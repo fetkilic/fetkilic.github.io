@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.gymlog.pro",
+    "sha256_cert_fingerprints": ["4C:0F:19:D9:4C:58:3C:10:A6:73:73:78:F0:5D:42:DF:C0:93:BC:E7:CE:A8:EE:47:B9:5A:E6:4C:8B:DB:28:E2"]
+  }
+}]
