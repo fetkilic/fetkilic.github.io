@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Feedback voor Fetullah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Schibsted+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#e9eef5;--card:#fff;--ink:#12203a;--mute:#5b6a82;--line:#cfd8e6;--accent:#2347e8;
+--r1:#d63b3b;--r2:#e8873a;--r3:#e3b92f;--r4:#6fb552;--r5:#1f9d68;}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1727;--card:#17223a;--ink:#e8eefb;--mute:#9aa9c4;--line:#2b3a58;--accent:#7b93ff;}}
+*{box-sizing:border-box}
+html{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 "Schibsted Grotesk",system-ui,sans-serif}
+main{max-width:680px;margin:0 auto;padding:32px 18px 56px}
+h1{font:800 clamp(30px,7vw,46px)/1.05 "Bricolage Grotesque",system-ui,sans-serif;margin:0 0 12px;letter-spacing:-.02em}
+.lead{color:var(--mute);margin:0 0 28px;max-width:52ch}
+form,.done{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
+fieldset{border:0;margin:0 0 26px;padding:0}
+legend,.lbl{font:600 17px "Bricolage Grotesque",sans-serif;margin-bottom:4px;padding:0}
+.hint{color:var(--mute);font-size:14px;margin:0 0 12px}
+input[type=text],textarea,select{width:100%;font:inherit;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+textarea{min-height:96px;resize:vertical}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.row{display:grid;grid-template-columns:1fr auto;gap:8px 14px;align-items:center;padding:12px 0;border-top:1px solid var(--line)}
+.row:first-of-type{border-top:0}
+.why{grid-column:1/-1;display:none}
+.row.has .why{display:block;animation:open .2s ease-out}
+.why label{display:block;font-size:14px;font-weight:600;margin-bottom:4px}
+.why textarea{min-height:64px}
+@keyframes open{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.row .name{font-weight:500}
+.row small{display:block;color:var(--mute);font-size:13px;font-weight:400}
+.scale{display:flex;gap:6px}
+.scale input,.nps input{position:absolute;opacity:0;pointer-events:none}
+.scale label,.nps label{display:grid;place-items:center;width:40px;height:40px;border:1px solid var(--line);border-radius:8px;cursor:pointer;font-weight:600;user-select:none;transition:background .15s,color .15s,border-color .15s}
+.scale label:hover,.nps label:hover{border-color:var(--accent)}
+.scale input:focus-visible+label,.nps input:focus-visible+label{outline:3px solid var(--accent);outline-offset:2px}
+.scale input:checked+label{color:#fff;border-color:transparent}
+.scale .v1:checked+label{background:var(--r1)}.scale .v2:checked+label{background:var(--r2)}
+.scale .v3:checked+label{background:var(--r3);color:#222}.scale .v4:checked+label{background:var(--r4)}
+.scale .v5:checked+label{background:var(--r5)}
+.nps{display:flex;flex-wrap:wrap;gap:6px}
+.nps label{width:38px;height:38px}
+.nps input:checked+label{background:var(--accent);border-color:var(--accent);color:#fff}
+.anon{display:flex;gap:10px;align-items:center;margin-top:10px;color:var(--mute);font-size:15px}
+button{font:600 16px "Bricolage Grotesque",sans-serif;background:var(--accent);color:#fff;border:0;border-radius:10px;padding:13px 22px;cursor:pointer}
+button:disabled{opacity:.6;cursor:wait}
+.err{color:var(--r1);font-size:14px;min-height:20px;margin:0 0 10px}
+.done{display:none}.done h2{font:800 28px "Bricolage Grotesque",sans-serif;margin:0 0 8px}
+@media(max-width:480px){.row{grid-template-columns:1fr}.scale label{width:calc((100% - 24px)/5)}.scale{width:100%}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main id="formView">
+<h1>Hoe is het om met Fetullah samen te werken?</h1>
+<p class="lead">Eerlijke feedback helpt me beter te testen en beter samen te werken. Duurt ongeveer 3 minuten. Naam invullen mag, hoeft niet.</p>
+
+<form id="f" novalidate>
+  <fieldset>
+    <label class="lbl" for="ctx">Waar werkten we samen?</label>
+    <p class="hint">Project, team of klant (optioneel).</p>
+    <input type="text" id="ctx" name="context" autocomplete="off">
+  </fieldset>
+
+  <fieldset id="ratings">
+    <legend>Beoordeel per onderdeel</legend>
+    <p class="hint">1 = onvoldoende, 5 = uitstekend</p>
+  </fieldset>
+
+  <fieldset>
+    <label class="lbl" for="good">Wat doet Fetullah goed?</label>
+    <textarea id="good" name="goed"></textarea>
+  </fieldset>
+
+  <fieldset>
+    <label class="lbl" for="better">Wat moet beter?</label>
+    <p class="hint">Concreet en eerlijk. Een voorbeeld helpt.</p>
+    <textarea id="better" name="beter"></textarea>
+  </fieldset>
+
+  <fieldset>
+    <label class="lbl" for="who">Naam</label>
+    <input type="text" id="who" name="naam" autocomplete="name">
+    <label class="anon"><input type="checkbox" id="anon"> Liever anoniem</label>
+  </fieldset>
+
+  <p class="err" id="err" role="alert"></p>
+  <button type="submit" id="send">Feedback versturen</button>
+</form>
+
+<section class="done" id="done" aria-live="polite">
+  <h2>Bedankt 🙌</h2>
+  <p>Je feedback is verstuurd.</p>
+</section>
+</main>
+
+<script>
+/* ===== INSTELLINGEN ===== */
+const SUBMIT_URL = "https://formsubmit.co/ajax/kilictesting@gmail.com"; // stuurt de feedback direct naar je mail. Leeg = mailto.
+const MAIL_TO    = "kilictesting@gmail.com"; // Fallback als SUBMIT_URL leeg is
+const REQUIRE_REASON = true;      // true = toelichting verplicht bij elke score
+/* ======================== */
+
+const topics = [
+  ["Testkwaliteit","Dekking, diepgang, vindt de relevante bugs"],
+  ["Communicatie","Helder, tijdig, begrijpelijk voor niet-testers"],
+  ["Samenwerking","Met devs, PO's en andere teams"],
+  ["Proactiviteit","Signaleert risico's en neemt initiatief"],
+  ["Technische kennis","Automatisering, tooling, API's"],
+  ["Betrouwbaarheid","Afspraken nakomen, voorspelbaar leveren"]
+];
+const box = document.getElementById("ratings");
+topics.forEach(([t,s],i)=>{
+  const row = document.createElement("div");
+  row.className="row";
+  let opts="";
+  for(let v=1;v<=5;v++) opts+=`<input type="radio" class="v${v}" name="r${i}" id="r${i}_${v}" value="${v}"><label for="r${i}_${v}">${v}</label>`;
+  row.innerHTML=`<div class="name">${t}<small>${s}</small></div><div class="scale" role="radiogroup" aria-label="${t}">${opts}</div>
+  <div class="why"><label for="w${i}">Waarom een <span class="sc"></span>?</label><textarea id="w${i}" name="w${i}" placeholder="Een concreet voorbeeld helpt"></textarea></div>`;
+  row.addEventListener("change",e=>{
+    if(e.target.type!=="radio") return;
+    row.classList.add("has");
+    row.querySelector(".sc").textContent=e.target.value;
+  });
+  box.appendChild(row);
+});
+
+const who = document.getElementById("who"), anon = document.getElementById("anon");
+anon.addEventListener("change",()=>{who.disabled=anon.checked; if(anon.checked) who.value="";});
+
+const f = document.getElementById("f"), err = document.getElementById("err"), btn = document.getElementById("send");
+f.addEventListener("submit", async e=>{
+  e.preventDefault(); err.textContent="";
+  const ratings = {};
+  let missing = 0, noWhy = [];
+  topics.forEach(([t],i)=>{
+    const c = f.querySelector(`input[name=r${i}]:checked`);
+    const w = f.querySelector(`#w${i}`).value.trim();
+    if(c){ ratings[t]={score:+c.value, toelichting:w}; if(!w) noWhy.push(t); } else missing++;
+  });
+  if(missing){ err.textContent=`Beoordeel nog ${missing} onderde${missing>1?"len":"el"} (1 t/m 5).`; return; }
+  if(REQUIRE_REASON && noWhy.length){ err.textContent="Vul bij elke score een toelichting in. Ontbreekt bij: "+noWhy.join(", ")+"."; return; }
+  const data = {
+    datum: new Date().toISOString(),
+    naam: anon.checked ? "Anoniem" : (who.value.trim()||"Niet ingevuld"),
+    context: f.context.value.trim(),
+    beoordelingen: ratings,
+    goed: f.goed.value.trim(),
+    beter: f.beter.value.trim()
+  };
+  btn.disabled = true;
+  try{
+    if(SUBMIT_URL){
+      const payload = {_subject:"Feedback voor Fetullah", _template:"table", _captcha:"false", Naam:data.naam, Context:data.context||"-"};
+      Object.entries(ratings).forEach(([k,v])=>{payload[k]=v.score+"/5"+(v.toelichting?" - "+v.toelichting:"");});
+      payload["Wat gaat goed"]=data.goed||"-"; payload["Wat moet beter"]=data.beter||"-";
+      const res = await fetch(SUBMIT_URL,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(payload)});
+      const j = await res.json().catch(()=>null);
+      if(!res.ok || (j && (j.success===false || j.success==="false"))) throw new Error(j&&j.message?j.message:"Versturen mislukt ("+res.status+")");
+    }else{
+      const lines = [
+        "Naam: "+data.naam, "Context: "+(data.context||"-"), "",
+        ...Object.entries(ratings).map(([k,v])=>k+": "+v.score+"/5"+(v.toelichting?"\n   Waarom: "+v.toelichting:"")), "",
+        "Wat gaat goed:", data.goed||"-", "",
+        "Wat moet beter:", data.beter||"-"
+      ];
+      location.href = "mailto:"+MAIL_TO+"?subject="+encodeURIComponent("Feedback")+"&body="+encodeURIComponent(lines.join("\n"));
+    }
+    f.style.display="none";
+    document.getElementById("done").style.display="block";
+    if(!SUBMIT_URL) document.querySelector("#done p").textContent="Je mailapp is geopend. Druk daar op verzenden om de feedback te versturen.";
+    window.scrollTo({top:0,behavior:"smooth"});
+  }catch(x){
+    err.textContent = "Versturen mislukt. Probeer het opnieuw. "+x.message;
+    btn.disabled=false;
+  }
+});
+
+</script>
+</body>
+</html>
